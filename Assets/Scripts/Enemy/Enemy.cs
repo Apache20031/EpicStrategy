@@ -1,27 +1,35 @@
 using UnityEngine;
+using Money;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] public HealthSystem health;
-    [SerializeField] public PathFollower movement;
+    [SerializeField] private HealthSystem _health;
+    [SerializeField] private PathFollower _movement;
+    [SerializeField] private int _damage = 1; 
+    [SerializeField] private int _bounty = 1;
+
+    public HealthSystem Health => _health;
+    public PathFollower Movement => _movement;
 
     private void Awake() {
-        movement.SetFollower(gameObject);
-        health.Awake();
-        health.Subscribe(OnHealthChanged);
-        movement.Awake();
-        movement.Subscribe(OnMovementCopleted);
+        _health.Awake();
+        _health.Subscribe(OnHealthChanged);
+        _movement.SetFollower(gameObject);
+        _movement.Awake();
+        _movement.Subscribe(OnMovementCopleted);
     }
 
     private void OnDestroy() {
-        movement.OnDestroy();
+        _movement.OnDestroy();
     }
 
     private void Update() {
-        movement.Update();
+        _movement.Update();
     }
 
+    [ContextMenu("Destroy")]
     private void Death() {
+        MoneyManager.AddMoney(_bounty);
         Destroy(gameObject);
     }
 
@@ -32,6 +40,6 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnMovementCopleted(object sender) {
-        Death();
+        Destroy(gameObject);
     }
 }

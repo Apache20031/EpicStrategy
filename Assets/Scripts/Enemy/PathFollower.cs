@@ -7,7 +7,7 @@ public class PathFollower
     private event System.Action<object> PathCopleted;
 
     [SerializeField] private EnemyPath _path;
-    [SerializeField] private float _speed;
+    [SerializeField] private float _speed = 2;
 
     private GameObject _movableObject;
     private bool _pause = false;
@@ -22,6 +22,7 @@ public class PathFollower
 
     public void Awake() {
         Observer.Subscribe<PauseEvent>(Pause);
+        _movableObject.transform.position = _path.Path[0].Position;
         NextPoint();
     }
     public void OnDestroy() {
@@ -47,9 +48,6 @@ public class PathFollower
             case PathPointType.Teleport:
                 Teleport();
                 break;
-            case PathPointType.End:
-                End();
-                break;
         }
     }
 
@@ -57,7 +55,12 @@ public class PathFollower
         _interpolateValue += Time.deltaTime * (_speed * (1 - _slowdown)) / _pathDistance;
         _movableObject.transform.position = Vector3.Lerp(_currentPathPoint.Position, _nextPathPoint.Position, _interpolateValue);
         if (_movableObject.transform.position == _nextPathPoint.Position) {
-            NextPoint();
+            if (_path.Path[_nextPathPointIndex].Type == PathPointType.End) {
+                End();
+            }
+            else {
+                NextPoint();
+            }
         }
     }
 
