@@ -4,7 +4,7 @@ using Events;
 [System.Serializable]
 public class PathFollower
 {
-    private event System.Action<object> PathCopleted;
+    private event System.Action<object> PathCompleted;
 
     [SerializeField] private EnemyPath _path;
     [SerializeField] private float _speed = 2;
@@ -30,7 +30,7 @@ public class PathFollower
     }
 
     public void Subscribe(System.Action<object> action) {
-        PathCopleted += action;
+        PathCompleted += action;
     }
 
     public void SetFollower(GameObject gameObject) {
@@ -73,7 +73,7 @@ public class PathFollower
 
     private void End() {
         _stop = true;
-        PathCopleted?.Invoke(this);
+        PathCompleted?.Invoke(this);
     }
 
     private void NextPoint() {

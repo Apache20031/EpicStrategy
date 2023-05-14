@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
         _health.Subscribe(OnHealthChanged);
         _movement.SetFollower(gameObject);
         _movement.Awake();
-        _movement.Subscribe(OnMovementCopleted);
+        _movement.Subscribe(OnMovementCompleted);
     }
 
     private void OnDestroy() {
@@ -27,7 +27,6 @@ public class Enemy : MonoBehaviour
         _movement.Update();
     }
 
-    [ContextMenu("Destroy")]
     private void Death() {
         MoneyManager.AddMoney(_bounty);
         Destroy(gameObject);
@@ -39,7 +38,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnMovementCopleted(object sender) {
+    private void OnMovementCompleted(object sender) {
         Destroy(gameObject);
     }
 }

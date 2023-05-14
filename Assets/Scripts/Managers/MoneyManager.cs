@@ -1,5 +1,11 @@
 using TMPro;
 using UnityEngine;
+using Events;
+
+namespace Events
+{
+    public class MoneyChangeEvent { public int money; }
+}
 
 namespace Money
 {
@@ -10,28 +16,36 @@ namespace Money
         [SerializeField] public int _startMoney = 10;
         [SerializeField] private TextMeshProUGUI _moneyText;
 
-        public int Money => _instance.money;
+        public static int Money => _instance.money;
 
         private static MoneyManager _instance;
 
         public static void AddMoney(int money) {
             _instance.money += money;
+            Observer.Post(_instance, new MoneyChangeEvent { money = money });
             _instance.UpdateText();
         }
         public static void SpendMoney(int money) {
             _instance.money -= money;
+            Observer.Post(_instance, new MoneyChangeEvent { money = money });
             _instance.UpdateText();
         }
 
         public void UpdateText() {
-            if (_moneyText != null) {
-                _moneyText.text = money.ToString();
+            if (_moneyText == null) {
+                return;
             }
+            _moneyText.text = money.ToString();
         }
 
         private void Awake() {
-            _instance = FindObjectOfType<MoneyManager>();
-            _instance.money = _instance._startMoney;
+            if (_instance == null) {
+                _instance = this;
+                _instance.money = _instance._startMoney;
+            }
+            else {
+                Destroy(gameObject);
+            }
         }
     }
 }
