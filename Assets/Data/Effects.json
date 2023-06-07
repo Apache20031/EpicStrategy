@@ -1,0 +1,38 @@
+{
+    "effects":[
+        {
+            "effectName": "fire",
+            "visualEffect" : "fire",
+            "duration" : 3,
+            "exclusiveEffects" : [
+                "frost"
+            ],
+            "durationActions" : [],
+            "intervalActions" : [
+                {
+                    "type" : "damage",
+                    "interval" : 0.4,
+                    "damageType" : "Fire",
+                    "value" : 3
+                }
+            ],
+            "finishActions" : []
+        },
+        {
+            "effectName": "frost",
+            "visualEffect" : "frost",
+            "duration" : 10,
+            "exclusiveEffects" : [
+                "fire"
+            ],
+            "durationActions" : [
+                {
+                    "type" : "slowdown",
+                    "strength" : 0.4
+                }
+            ],
+            "intervalActions" : [],
+            "finishActions" : []
+        }
+    ]
+}

@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private HealthSystem _health;
     [SerializeField] private PathFollower _movement;
     [SerializeField] private int _damage = 1; 
-    [SerializeField] private int _bounty = 1;
+    [SerializeField] private int _reward = 1;
 
     public HealthSystem Health => _health;
     public PathFollower Movement => _movement;
@@ -28,7 +28,11 @@ public class Enemy : MonoBehaviour
     }
 
     private void Death() {
-        MoneyManager.AddMoney(_bounty);
+        MoneyManager.AddMoney(_reward);
+        Destroy(gameObject);
+    }
+
+    private void PathComplete() {
         Destroy(gameObject);
     }
 
@@ -39,6 +43,6 @@ public class Enemy : MonoBehaviour
     }
 
     private void OnMovementCompleted(object sender) {
-        Destroy(gameObject);
+        PathComplete();
     }
 }

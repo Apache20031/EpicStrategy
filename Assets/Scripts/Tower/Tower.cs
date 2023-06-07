@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TowerMenu _menu;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] private float _reload = 1;
+
+    [SerializeField] private List<EffectData> _effects;
 }

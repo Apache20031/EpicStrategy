@@ -73,6 +73,10 @@ public class HealthSystem
         UpdateSlider();
     }
 
+    public void SetArmorReduction(float armorReduction) {
+        _armorReduction = armorReduction;
+    }
+
     private void UpdateSlider() {
         if (_healthSlider) {
             _healthSlider.value = _health;

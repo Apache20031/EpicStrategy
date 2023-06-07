@@ -6,8 +6,10 @@ namespace Level
     public class LevelData : ScriptableObject
     {
         [SerializeField] private AvailableTowers _availableTowers;
+        [SerializeField] private AvailableResources _availableResources;
 
         public AvailableTowers AvailableTowers => _availableTowers;
+        public AvailableResources AvailableResources => _availableResources;
     }
 
     [System.Serializable]
@@ -29,5 +31,12 @@ namespace Level
                     return false;
             }
         }
+    }
+
+    [System.Serializable]
+    public class AvailableResources {
+        [SerializeField] private int _startMoney = 10;
+
+        public int StartMoney => _startMoney;
     }
 }

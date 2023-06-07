@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using Events;
+using Level;
 
 namespace Events
 {
@@ -11,11 +12,7 @@ namespace Money
 {
     public class MoneyManager : MonoBehaviour
     {
-        [ReadOnly]
-        [SerializeField] public int money = 0;
-        [SerializeField] public int _startMoney = 10;
-        [SerializeField] private TextMeshProUGUI _moneyText;
-
+        // = = = Singleton
         public static int Money => _instance.money;
 
         private static MoneyManager _instance;
@@ -31,6 +28,11 @@ namespace Money
             _instance.UpdateText();
         }
 
+        // = = = Object
+        [ReadOnly]
+        [SerializeField] public int money = 0;
+        [SerializeField] private TextMeshProUGUI _moneyText;
+
         public void UpdateText() {
             if (_moneyText == null) {
                 return;
@@ -41,7 +43,7 @@ namespace Money
         private void Awake() {
             if (_instance == null) {
                 _instance = this;
-                _instance.money = _instance._startMoney;
+                _instance.money = LevelManager.LevelData.AvailableResources.StartMoney;
             }
             else {
                 Destroy(gameObject);

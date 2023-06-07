@@ -51,6 +51,10 @@ public class PathFollower
         }
     }
 
+    public void SetSlowdown(float slowdown) {
+        _slowdown = slowdown;
+    }
+
     private void MovementUpdate() {
         _interpolateValue += Time.deltaTime * (_speed * (1 - _slowdown)) / _pathDistance;
         _movableObject.transform.position = Vector3.Lerp(_currentPathPoint.Position, _nextPathPoint.Position, _interpolateValue);

@@ -4,11 +4,13 @@ namespace Level
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] public LevelData levelData;
-
+        // = = = Singleton
         public static LevelData LevelData => _instance.levelData;
 
         private static LevelManager _instance;
+
+        // = = = Object
+        [SerializeField] public LevelData levelData;
 
         private void Awake() {
             if (_instance == null) {
