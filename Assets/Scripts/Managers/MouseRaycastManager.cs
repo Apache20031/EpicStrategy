@@ -26,8 +26,11 @@ public class MouseRaycastManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, _layerMask)) {
             IRaycastable raycastableObject = hit.collider.GetComponent(typeof(IRaycastable)) as IRaycastable;
-            raycastableObject?.OnRaycastHit();
-            _lastObject = raycastableObject;
+            if (raycastableObject != null) {
+                _lastObject?.OnRaycastMissed();
+                raycastableObject.OnRaycastHit();
+                _lastObject = raycastableObject;
+            }
         }
         else {
             _lastObject?.OnRaycastMissed();

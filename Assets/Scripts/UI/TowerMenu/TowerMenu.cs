@@ -20,12 +20,12 @@ public class TowerMenu : MonoBehaviour
         HideButtonInfo();
     }
 
-    private void OnButtonClick(TowerMenuButton button, TowerMenuButtunState buttunState) {
+    private void OnButtonClick(TowerMenuButton button) {
         if (button != _lastButton) {
             _lastButton?.SetState(TowerMenuButtunState.Default);
         }
         _lastButton = button;
-        switch (buttunState) {
+        switch (button.State) {
             case TowerMenuButtunState.Default:
                 ShowButtonInfo(button);
                 break;
@@ -41,6 +41,7 @@ public class TowerMenu : MonoBehaviour
                         _constructionPlace.SellTower(button.SellPrice);
                         break;
                 }
+                _constructionPlace.SetMenuActive(false);
                 break;
         }
     }

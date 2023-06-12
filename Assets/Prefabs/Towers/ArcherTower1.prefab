@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3087297533607724965}
   - component: {fileID: 4054412434474536883}
+  - component: {fileID: 2705644123123444057}
   m_Layer: 0
-  m_Name: ArcherTower_1
+  m_Name: ArcherTower1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,24 +49,29 @@ MonoBehaviour:
   _menu: {fileID: 0}
   _reload: 1
   _effects:
-  - _type: 1
-    _damage: 2
-    _damageType: 2
-    _duration: 10
-    _interval: 0.5
-    _delay: 0
-    _strength: 0
-    _visualEffect: 
   - _type: 0
-    _damage: 2
-    _damageType: 2
-    _duration: 10
-    _interval: 0.5
+    _damage: 10
+    _damageType: 0
+    _duration: 0
+    _interval: 0
     _delay: 0
     _strength: 0
     _visualEffect: 
-  _projectile: {fileID: 0}
-  _spawnPosition: {x: 0, y: 0, z: 0}
+  _projectile: {fileID: 2081202054681335392, guid: c61822ad0dd0cd240a059132d0806020, type: 3}
+  _spawnPosition: {x: 0, y: 2.4, z: 0}
+--- !u!135 &2705644123123444057
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288867646511083443}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5960989357916718418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -119,7 +125,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 01fcfa50430012e4a917380985924da8, type: 3}
       propertyPath: m_Name
-      value: ArcherTower_1
+      value: ArcherTower1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 01fcfa50430012e4a917380985924da8, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 01fcfa50430012e4a917380985924da8, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01fcfa50430012e4a917380985924da8, type: 3}

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class ArmorReductionEffect : Effect
 {
+    public float Strength => _effectData.Strength;
+
     protected override void StartEffect() {
-        _effectsManager.ApplyArmorReductionEffect(this);
+        _effectsManager.Enemy.Health.AddArmorReductionEffect(this);
         StartCoroutine(DurationTimer());
     }
 
@@ -18,7 +20,7 @@ public class ArmorReductionEffect : Effect
                 timer -= Time.deltaTime;
             }
         }
-        _effectsManager.RemoveArmorReductionEffect(this);
+        _effectsManager.Enemy.Health.RemoveArmorReductionEffect(this);
         Destroy(this);
     }
 }

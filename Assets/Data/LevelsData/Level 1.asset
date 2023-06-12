@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   _availableTowers:
-    _archerTower1: 1
-    _archerTower2: 1
-    _archerTower3: 1
+    _archerTower: 010101
+    _cannonTower: 000000
+    _magicTower: 000000
+    _poisonTower: 000000
+    _slowTower: 000000
   _availableResources:
     _startMoney: 10

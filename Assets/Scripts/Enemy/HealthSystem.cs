@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +29,18 @@ public class HealthSystem
     [SerializeField] private float _poisonProtection = 0;
     [SerializeField] private Slider _healthSlider;
 
+    private List<ArmorReductionEffect> _armorReductionEffects = new List<ArmorReductionEffect>();
     private float _armorReduction = 0;
+
+    public void AddArmorReductionEffect(ArmorReductionEffect armorReductionEffect) {
+        _armorReductionEffects.Add(armorReductionEffect);
+        RecalculateArmorReductionEffect();
+    }
+
+    public void RemoveArmorReductionEffect(ArmorReductionEffect armorReductionEffect) {
+        _armorReductionEffects.Remove(armorReductionEffect);
+        RecalculateArmorReductionEffect();
+    }
 
     public void Awake() {
         _health = _maxHealth;
@@ -75,6 +88,14 @@ public class HealthSystem
 
     public void SetArmorReduction(float armorReduction) {
         _armorReduction = armorReduction;
+    }
+
+    private void RecalculateArmorReductionEffect() {
+        float newArmorReduction = 0;
+        if (_armorReductionEffects.Any()) {
+            newArmorReduction = _armorReductionEffects.Max(effect => effect.Strength);
+        }
+        _armorReduction = newArmorReduction;
     }
 
     private void UpdateSlider() {

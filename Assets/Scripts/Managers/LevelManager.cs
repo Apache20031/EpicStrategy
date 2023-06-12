@@ -11,7 +11,7 @@ namespace Level
 
         // = = = Object
         [SerializeField] public LevelData levelData;
-
+        
         private void Awake() {
             if (_instance == null) {
                 _instance = this;

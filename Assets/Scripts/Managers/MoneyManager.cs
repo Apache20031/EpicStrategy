@@ -43,11 +43,14 @@ namespace Money
         private void Awake() {
             if (_instance == null) {
                 _instance = this;
-                _instance.money = LevelManager.LevelData.AvailableResources.StartMoney;
             }
             else {
                 Destroy(gameObject);
             }
+        }
+
+        private void Start() {
+            _instance.money = LevelManager.LevelData.AvailableResources.StartMoney;
         }
     }
 }

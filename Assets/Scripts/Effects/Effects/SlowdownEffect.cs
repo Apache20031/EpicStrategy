@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class SlowdownEffect : Effect
 {
+    public float Strength => _effectData.Strength;
+
     protected override void StartEffect() {
-        _effectsManager.ApplySlowdownEffect(this);
+        _effectsManager.Enemy.Movement.AddSlowdownEffect(this);
         StartCoroutine(DurationTimer());
     }
 
@@ -18,7 +20,7 @@ public class SlowdownEffect : Effect
                 timer -= Time.deltaTime;
             }
         }
-        _effectsManager.RemoveSlowdownEffect(this);
+        _effectsManager.Enemy.Movement.RemoveSlowdownEffect(this);
         Destroy(this);
     }
 }

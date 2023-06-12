@@ -20,10 +20,11 @@ public enum TowerMenuButtonType
 
 public class TowerMenuButton : MonoBehaviour
 {
-    private event System.Action<TowerMenuButton, TowerMenuButtunState> ButtonClicked;
+    private event System.Action<TowerMenuButton> ButtonClicked;
 
     [SerializeField] private TowerMenuButtonType _type;
-    [SerializeField] private int _towerID = 0;
+    [SerializeField] private TowerType _towerType;
+    [SerializeField] private int _towerLevel;
     [SerializeField] private GameObject _towerObject;
     [SerializeField] private int _price = 10;
     [SerializeField] private int _sellPrice = 10;
@@ -38,16 +39,20 @@ public class TowerMenuButton : MonoBehaviour
     public int Price => _price;
     public int SellPrice => _sellPrice;
     public float ConstructionTime => _constructionTime;
+    public TowerMenuButtunState State => _state;
 
     private Image _image;
     private Button _button;
     private TowerMenuButtunState _state = TowerMenuButtunState.Default;
 
-    public void Subscribe(System.Action<TowerMenuButton, TowerMenuButtunState> action) {
+    public void Subscribe(System.Action<TowerMenuButton> action) {
         ButtonClicked += action;
     }
 
     public void SetState(TowerMenuButtunState state) {
+        if (_state == TowerMenuButtunState.Lock) {
+            return;
+        }
         _state = state;
         switch (state) {
             case TowerMenuButtunState.Default:
@@ -73,10 +78,9 @@ public class TowerMenuButton : MonoBehaviour
     private void Start() {
         Observer.Subscribe<MoneyChangeEvent>(UpdateCostAvailable);
         _button.onClick.AddListener(OnMouseButtonClickHandler);
-        if (LevelManager.LevelData.AvailableTowers.GetTowerAvailable(_towerID)) {
+        if (!LevelManager.LevelData.AvailableTowers.GetTowerAvailable(_towerType, _towerLevel)) {
             SetState(TowerMenuButtunState.Lock);
         }
-        
     }
 
     private void OnDestroy() {
@@ -88,7 +92,7 @@ public class TowerMenuButton : MonoBehaviour
     }
 
     private void OnMouseButtonClickHandler() {
-        ButtonClicked?.Invoke(this, _state);
+        ButtonClicked?.Invoke(this);
         switch (_state) {
             case TowerMenuButtunState.Default:
                 SetState(TowerMenuButtunState.Request);
@@ -105,7 +109,8 @@ public class TowerMenuButton : MonoBehaviour
     private class TowerMenuButtonEditor : Editor 
     {
         SerializedProperty type;
-        SerializedProperty towerID;
+        SerializedProperty towerType;
+        SerializedProperty towerLevel;
         SerializedProperty towerObject;
         SerializedProperty price;
         SerializedProperty sellPrice;
@@ -122,7 +127,8 @@ public class TowerMenuButton : MonoBehaviour
 
             EditorGUILayout.PropertyField(type);
             if (towerMenuButton._type == TowerMenuButtonType.Build) {
-                EditorGUILayout.PropertyField(towerID);
+                EditorGUILayout.PropertyField(towerType);
+                EditorGUILayout.PropertyField(towerLevel);
                 EditorGUILayout.PropertyField(towerObject);
                 EditorGUILayout.PropertyField(price);
                 EditorGUILayout.PropertyField(sellPrice);
@@ -137,7 +143,8 @@ public class TowerMenuButton : MonoBehaviour
 
         private void OnEnable() {
             type = serializedObject.FindProperty("_type");
-            towerID = serializedObject.FindProperty("_towerID");
+            towerType = serializedObject.FindProperty("_towerType");
+            towerLevel = serializedObject.FindProperty("_towerLevel");
             towerObject = serializedObject.FindProperty("_towerObject");
             price = serializedObject.FindProperty("_price");
             sellPrice = serializedObject.FindProperty("_sellPrice");

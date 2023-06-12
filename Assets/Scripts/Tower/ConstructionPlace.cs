@@ -56,12 +56,20 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
         SetMenuActive(false);
     }
 
+    public void SetMenuActive(bool active) {
+        _menu?.SetActive(active);
+    }
+
     private void Awake() {
         Observer.Subscribe<PauseEvent>(Pause);
     }
 
     private void OnDestroy() {
         Observer.Unsubscribe<PauseEvent>(Pause);
+    }
+
+    private void Start() {
+        _menu = _defaultMenu;
     }
 
     private void BuildTower(GameObject tower) {
@@ -76,10 +84,6 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
         }
     }
 
-    private void SetMenuActive(bool active) {
-        _menu?.SetActive(active);
-    }
-
     private IEnumerator ConstructionTimer(GameObject tower, float duration) {
         float timer = duration;
 
@@ -88,7 +92,9 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
 
             if (!_pause) {
                 timer -= Time.deltaTime;
-                _slider.value = duration - timer;
+                if (_slider) {
+                    _slider.value = duration - timer;
+                }
             }
         }
 

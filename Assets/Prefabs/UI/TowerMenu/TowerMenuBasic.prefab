@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3072797324438963595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7918184394505725949}
+  - component: {fileID: 5945941778863928387}
+  m_Layer: 7
+  m_Name: BackBody
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7918184394505725949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072797324438963595}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6534284121915531568}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5945941778863928387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3072797324438963595}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 280, y: 280, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9112000629412482771
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +56,8 @@ GameObject:
   - component: {fileID: 6534284121915531568}
   - component: {fileID: 3479847647536153843}
   - component: {fileID: 4530065943098489267}
-  - component: {fileID: 3774175080946856670}
   - component: {fileID: 1194758430503439710}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: TowerMenuBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,6 +76,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7918184394505725949}
   - {fileID: 5129016718577237324}
   - {fileID: 7010952339154201314}
   - {fileID: 4730486704348098943}
@@ -83,50 +128,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3774175080946856670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9112000629412482771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 4530065943098489267}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1194758430503439710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +155,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6534284121915531568}
     m_Modifications:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _lockSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
@@ -179,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -259,7 +264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112000629412482771, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
@@ -291,6 +296,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerObject
+      value: 
+      objectReference: {fileID: 1288867646511083443, guid: 0417afb495878e24e81218b3484c0868, type: 3}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _defaultSprite
       value: 
       objectReference: {fileID: 21300000, guid: c35e81e9b50d05e4e9fdc97718c716d2, type: 3}
@@ -298,6 +311,22 @@ PrefabInstance:
       propertyPath: _requestSprite
       value: 
       objectReference: {fileID: 21300000, guid: 945b304b36ffa98438e60185b7d74dfd, type: 3}
+    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4530065943098489267, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -312,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -392,7 +421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112000629412482771, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
@@ -420,6 +449,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6534284121915531568}
     m_Modifications:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _lockSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
@@ -445,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -525,7 +558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112000629412482771, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
@@ -553,6 +586,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6534284121915531568}
     m_Modifications:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _lockSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
@@ -578,7 +615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -658,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112000629412482771, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
@@ -686,6 +723,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 6534284121915531568}
     m_Modifications:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _lockSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
@@ -711,7 +752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6534284121915531568, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_AnchorMax.x
@@ -791,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9112000629412482771, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}

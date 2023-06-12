@@ -15,8 +15,6 @@ public enum EffectType
 
 public abstract class Effect : MonoBehaviour
 {
-    public EffectData EffectData => _effectData;
-
     protected EffectData _effectData;
     protected EffectsManager _effectsManager;
     protected bool _pause = false;

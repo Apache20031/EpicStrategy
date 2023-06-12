@@ -1,5 +1,7 @@
 using UnityEngine;
 using Events;
+using System.Collections.Generic;
+using System.Linq;
 
 [System.Serializable]
 public class PathFollower
@@ -9,6 +11,7 @@ public class PathFollower
     [SerializeField] private EnemyPath _path;
     [SerializeField] private float _speed = 2;
 
+    private List<SlowdownEffect> _slowdownEffects = new List<SlowdownEffect>();
     private GameObject _movableObject;
     private bool _pause = false;
     private bool _stop = false;
@@ -19,6 +22,16 @@ public class PathFollower
     private int _nextPathPointIndex = 0;
     private float _interpolateValue;
     private float _pathDistance;
+
+    public void AddSlowdownEffect(SlowdownEffect slowdownEffect) {
+        _slowdownEffects.Add(slowdownEffect);
+        RecalculateSlowdownEffect();
+    }
+
+    public void RemoveSlowdownEffect(SlowdownEffect slowdownEffect) {
+        _slowdownEffects.Remove(slowdownEffect);
+        RecalculateSlowdownEffect();
+    }
 
     public void Awake() {
         Observer.Subscribe<PauseEvent>(Pause);
@@ -51,8 +64,12 @@ public class PathFollower
         }
     }
 
-    public void SetSlowdown(float slowdown) {
-        _slowdown = slowdown;
+    private void RecalculateSlowdownEffect() {
+        float newSlowdown = 0;
+        if (_slowdownEffects.Any()) {
+            newSlowdown = _slowdownEffects.Max(effect => effect.Strength);
+        }
+        _slowdown = newSlowdown;
     }
 
     private void MovementUpdate() {
