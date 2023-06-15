@@ -1,11 +1,6 @@
 using UnityEngine;
 using Events;
 
-namespace Events
-{
-    public class PauseEvent { public bool pause; }
-}
-
 namespace Pause
 {
     public class PauseManager : MonoBehaviour

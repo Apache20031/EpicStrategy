@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
     }
 
     private void PathComplete() {
+        LivesManager.Damage(_damage);
         Destroy(gameObject);
     }
 

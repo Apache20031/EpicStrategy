@@ -23,8 +23,7 @@ public class TowerMenuButton : MonoBehaviour
     private event System.Action<TowerMenuButton> ButtonClicked;
 
     [SerializeField] private TowerMenuButtonType _type;
-    [SerializeField] private TowerType _towerType;
-    [SerializeField] private int _towerLevel;
+    [SerializeField] private string _towerName;
     [SerializeField] private GameObject _towerObject;
     [SerializeField] private int _price = 10;
     [SerializeField] private int _sellPrice = 10;
@@ -34,6 +33,7 @@ public class TowerMenuButton : MonoBehaviour
     [SerializeField] private Sprite _requestSprite;
     [SerializeField] private Sprite _lockSprite;
 
+    public string TowerName => _towerName;
     public TowerMenuButtonType Type => _type;
     public GameObject TowerObject => _towerObject;
     public int Price => _price;
@@ -78,7 +78,7 @@ public class TowerMenuButton : MonoBehaviour
     private void Start() {
         Observer.Subscribe<MoneyChangeEvent>(UpdateCostAvailable);
         _button.onClick.AddListener(OnMouseButtonClickHandler);
-        if (!LevelManager.LevelData.AvailableTowers.GetTowerAvailable(_towerType, _towerLevel)) {
+        if (!LevelManager.LevelData.AvailableTowers.GetTowerAvailable(_towerName)) {
             SetState(TowerMenuButtunState.Lock);
         }
     }
@@ -109,8 +109,7 @@ public class TowerMenuButton : MonoBehaviour
     private class TowerMenuButtonEditor : Editor 
     {
         SerializedProperty type;
-        SerializedProperty towerType;
-        SerializedProperty towerLevel;
+        SerializedProperty towerName;
         SerializedProperty towerObject;
         SerializedProperty price;
         SerializedProperty sellPrice;
@@ -127,8 +126,7 @@ public class TowerMenuButton : MonoBehaviour
 
             EditorGUILayout.PropertyField(type);
             if (towerMenuButton._type == TowerMenuButtonType.Build) {
-                EditorGUILayout.PropertyField(towerType);
-                EditorGUILayout.PropertyField(towerLevel);
+                EditorGUILayout.PropertyField(towerName);
                 EditorGUILayout.PropertyField(towerObject);
                 EditorGUILayout.PropertyField(price);
                 EditorGUILayout.PropertyField(sellPrice);
@@ -143,8 +141,7 @@ public class TowerMenuButton : MonoBehaviour
 
         private void OnEnable() {
             type = serializedObject.FindProperty("_type");
-            towerType = serializedObject.FindProperty("_towerType");
-            towerLevel = serializedObject.FindProperty("_towerLevel");
+            towerName = serializedObject.FindProperty("_towerName");
             towerObject = serializedObject.FindProperty("_towerObject");
             price = serializedObject.FindProperty("_price");
             sellPrice = serializedObject.FindProperty("_sellPrice");

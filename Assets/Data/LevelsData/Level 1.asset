@@ -13,10 +13,29 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: 
   _availableTowers:
-    _archerTower: 010101
-    _cannonTower: 000000
-    _magicTower: 000000
-    _poisonTower: 000000
-    _slowTower: 000000
+    _towers:
+    - Archer Tower 1
+    - Archer Tower 2
+    - Archer Tower 3
   _availableResources:
-    _startMoney: 10
+    _startMoney: 25
+    _startLives: 20
+  _wavesData:
+    _waves:
+    - _nextWaveDelay: 0
+      _paths:
+      - _number: 1
+        _enemies:
+        - _enemyName: Goblin
+          _count: 3
+          _interval: 3
+      - _number: 3
+        _enemies: []
+    - _nextWaveDelay: 0
+      _paths: []
+    - _nextWaveDelay: 0
+      _paths: []
+    - _nextWaveDelay: 0
+      _paths: []
+    - _nextWaveDelay: 0
+      _paths: []

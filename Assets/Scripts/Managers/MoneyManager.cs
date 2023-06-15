@@ -3,11 +3,6 @@ using UnityEngine;
 using Events;
 using Level;
 
-namespace Events
-{
-    public class MoneyChangeEvent { public int money; }
-}
-
 namespace Money
 {
     public class MoneyManager : MonoBehaviour
@@ -51,6 +46,7 @@ namespace Money
 
         private void Start() {
             _instance.money = LevelManager.LevelData.AvailableResources.StartMoney;
+            UpdateText();
         }
     }
 }

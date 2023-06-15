@@ -292,6 +292,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 6534284121915531568}
     m_Modifications:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _sellPrice
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
+      propertyPath: _towerName
+      value: Archer Tower 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _lockSprite
       value: 
       objectReference: {fileID: 21300000, guid: 5ea54712631160f4f8d6e16681ebcc9f, type: 3}
