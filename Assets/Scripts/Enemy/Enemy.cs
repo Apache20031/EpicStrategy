@@ -20,13 +20,7 @@ public class Enemy : MonoBehaviour
     private void Awake() {
         _health.Awake();
         _health.Subscribe(OnHealthChanged);
-        _movement.SetFollower(gameObject);
-        _movement.Awake();
         _movement.Subscribe(OnMovementCompleted);
-    }
-
-    private void OnDestroy() {
-        _movement.OnDestroy();
     }
 
     private void Update() {

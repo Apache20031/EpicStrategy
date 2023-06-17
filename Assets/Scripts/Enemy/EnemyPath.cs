@@ -13,6 +13,8 @@ public class EnemyPath : MonoBehaviour
     [SerializeField] private List<PathPoint> _path = new List<PathPoint>();
 
     public List<PathPoint> Path => _path;
+    public Vector3 StartPoint => _path[0].Position;
+    public Quaternion StartRotation => Quaternion.LookRotation(_path[1].Position - _path[0].Position);
 
     #region Gizmos
     #if UNITY_EDITOR

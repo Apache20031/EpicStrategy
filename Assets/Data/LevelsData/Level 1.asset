@@ -22,20 +22,17 @@ MonoBehaviour:
     _startLives: 20
   _wavesData:
     _waves:
-    - _nextWaveDelay: 0
+    - _nextWaveDelay: 15
       _paths:
-      - _number: 1
+      - _index: 0
         _enemies:
         - _enemyName: Goblin
-          _count: 3
+          _count: 5
           _interval: 3
-      - _number: 3
-        _enemies: []
     - _nextWaveDelay: 0
-      _paths: []
-    - _nextWaveDelay: 0
-      _paths: []
-    - _nextWaveDelay: 0
-      _paths: []
-    - _nextWaveDelay: 0
-      _paths: []
+      _paths:
+      - _index: 0
+        _enemies:
+        - _enemyName: Goblin
+          _count: 5
+          _interval: 3

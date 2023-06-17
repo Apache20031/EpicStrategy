@@ -21,13 +21,16 @@ public class ProjectileTower : Tower
     protected override void OnTriggerExit(Collider other) {
         base.OnTriggerExit(other);
         if (other.GetComponent<Enemy>() == _target) {
-            _target = FindClosedEnemy();
+            _target = null;
         }
     }
 
     protected override void Attack() {
         if (!_target) {
-            return;
+            _target = FindClosedEnemy();
+            if (!_target) {
+                return;
+            }
         }
         GameObject projectileObject = Instantiate(_projectile);
         projectileObject.transform.localPosition = SpawnPosition;

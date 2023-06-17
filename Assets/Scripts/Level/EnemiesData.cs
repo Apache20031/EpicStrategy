@@ -6,7 +6,9 @@ public class EnemiesData : ScriptableObject
 {
     [SerializeField] private List<EnemyObjectData> _enemies;
 
-    public List<EnemyObjectData> Enemies => _enemies;
+    public GameObject GetEnemy(string enemyName) {
+        return _enemies.Find(enemy => enemy.EnemyName == enemyName).EnemyObject;
+    }
 }
 
 [System.Serializable]

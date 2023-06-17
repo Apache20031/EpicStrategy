@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 3479847647536153843}
   - component: {fileID: 4530065943098489267}
   - component: {fileID: 1194758430503439710}
+  - component: {fileID: 5600511850953209364}
   m_Layer: 5
   m_Name: TowerMenuBasic
   m_TagString: Untagged
@@ -147,6 +148,20 @@ MonoBehaviour:
   - {fileID: 5598177353137439933}
   - {fileID: 3498925536719315478}
   _constructionPlace: {fileID: 0}
+--- !u!114 &5600511850953209364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9112000629412482771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad14b463e2dab954cb3bc509d6d2cb6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _followObject: {fileID: 0}
+  _distanceFromCamera: 5
 --- !u!1001 &1947912743187140687
 PrefabInstance:
   m_ObjectHideFlags: 0
