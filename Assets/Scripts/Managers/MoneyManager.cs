@@ -14,12 +14,12 @@ namespace Money
 
         public static void AddMoney(int money) {
             _instance.money += money;
-            Observer.Post(_instance, new MoneyChangeEvent { money = money });
+            Observer.Post(_instance, new MoneyChangeEvent { });
             _instance.UpdateText();
         }
         public static void SpendMoney(int money) {
             _instance.money -= money;
-            Observer.Post(_instance, new MoneyChangeEvent { money = money });
+            Observer.Post(_instance, new MoneyChangeEvent { });
             _instance.UpdateText();
         }
 

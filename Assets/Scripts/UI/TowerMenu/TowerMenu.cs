@@ -9,10 +9,18 @@ public class TowerMenu : MonoBehaviour
 
     private TowerMenuButton _lastButton;
 
+    public void SetConstructionPlace(ConstructionPlace constructionPlace) {
+        _constructionPlace = constructionPlace;
+    }
+
     private void Start() {
         foreach (TowerMenuButton button in _towerMenuButtons) {
             button.Subscribe(OnButtonClick);
         }
+    }
+
+    private void OnEnable() {
+        HideButtonInfo();
     }
 
     private void OnDisable() {

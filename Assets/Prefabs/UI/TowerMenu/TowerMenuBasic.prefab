@@ -160,8 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad14b463e2dab954cb3bc509d6d2cb6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _followObject: {fileID: 0}
-  _distanceFromCamera: 5
+  _lookAtCamera: 1
+  _stayNearTheCamera: 1
+  _targetObject: {fileID: 0}
+  _distanceFromCamera: 10
 --- !u!1001 &1947912743187140687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -325,7 +327,7 @@ PrefabInstance:
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _towerObject
       value: 
-      objectReference: {fileID: 1288867646511083443, guid: 0417afb495878e24e81218b3484c0868, type: 3}
+      objectReference: {fileID: 1288867646511083443, guid: 8dbf09a94377f1d47814cfd35e1a2647, type: 3}
     - target: {fileID: 862472608275074565, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: _defaultSprite
       value: 
@@ -334,22 +336,6 @@ PrefabInstance:
       propertyPath: _requestSprite
       value: 
       objectReference: {fileID: 21300000, guid: 945b304b36ffa98438e60185b7d74dfd, type: 3}
-    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3774175080946856670, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4530065943098489267, guid: 4608dd3fd6200b24ab6dbf6eecddec6f, type: 3}
       propertyPath: m_Sprite
       value: 

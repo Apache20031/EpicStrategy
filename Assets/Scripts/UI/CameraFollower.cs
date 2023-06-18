@@ -9,9 +9,12 @@ public class CameraFollower : MonoBehaviour
     [SerializeField] private bool _stayNearTheCamera = false;
     [SerializeField] private GameObject _targetObject;
     [SerializeField] private float _distanceFromCamera = 10f;
-    
 
     private Transform _cameraTransform;
+
+    public void SetTarget(GameObject target) {
+        _targetObject = target;
+    }
 
     private void Start() {
         _cameraTransform = Camera.main.transform;

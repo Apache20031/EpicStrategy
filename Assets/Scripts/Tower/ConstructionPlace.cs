@@ -11,20 +11,38 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
     [SerializeField] private Slider _slider;
     [SerializeField] private GameObject _defaultMenu;
     [SerializeField] private GameObject _cancelMenu;
+    [SerializeField] private Transform _canvas;
 
-    private GameObject _menu;
+    private GameObject Menu {
+        get { 
+            return _currentMenu; 
+        }
+        set { 
+            Destroy(_currentMenu);
+            _currentMenu = Instantiate(value, _canvas);
+            _currentMenu.GetComponent<TowerMenu>().SetConstructionPlace(this);
+            _currentMenu.GetComponent<CameraFollower>().SetTarget(gameObject);
+            _currentMenu.SetActive(false);
+        }
+    }
+
+    private GameObject _currentMenu;
     private GameObject _tower;
     private bool _pause = false;
     private bool _construction = false;
-    private Coroutine coroutine;
+    private Coroutine _constructionCoroutine;
+    private int _lastPrice;
 
     public void StartConstruction(GameObject tower, float duration, int price) {
         if (_construction) {
             return;
         }
+        Menu = _cancelMenu;
+        MoneyManager.SpendMoney(price);
+        _lastPrice = price;
         _tower?.SetActive(false);
         _construction = true;
-        coroutine = StartCoroutine(ConstructionTimer(tower, duration));
+        _constructionCoroutine = StartCoroutine(ConstructionTimer(tower, duration));
         if (_slider) {
             _slider.gameObject.SetActive(true);
             _slider.maxValue = duration;
@@ -33,9 +51,11 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
     }
 
     public void CancelConstruction() {
+        Menu = _tower ? _tower.GetComponent<Tower>().Menu : _defaultMenu;
+        MoneyManager.AddMoney(_lastPrice);
         _tower?.SetActive(true);
         _construction = false;
-        StopCoroutine(coroutine);
+        StopCoroutine(_constructionCoroutine);
         if (_slider) {
             _slider.gameObject.SetActive(false);
         }
@@ -43,8 +63,10 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
 
     public void SellTower(int sellPrice) {
         if (_tower) {
+            Menu = _defaultMenu;
             MoneyManager.AddMoney(sellPrice);
             Destroy(_tower);
+            _tower = null;
         }
     }
 
@@ -57,7 +79,7 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
     }
 
     public void SetMenuActive(bool active) {
-        _menu?.SetActive(active);
+        Menu?.SetActive(active);
     }
 
     private void Awake() {
@@ -69,7 +91,7 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
     }
 
     private void Start() {
-        _menu = _defaultMenu;
+        Menu = _defaultMenu;
     }
 
     private void BuildTower(GameObject tower) {
@@ -79,6 +101,7 @@ public class ConstructionPlace : MonoBehaviour, IRaycastable
         _tower = Instantiate(tower, gameObject.transform);
         _tower.transform.localPosition = _spawnPosition;
         _construction = false;
+        Menu = tower.GetComponent<Tower>().Menu;
         if (_slider) {
             _slider.gameObject.SetActive(false);
         }

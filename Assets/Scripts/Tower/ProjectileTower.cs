@@ -42,6 +42,9 @@ public class ProjectileTower : Tower
     private Enemy FindClosedEnemy() {
         Enemy closedEnemy = null;
         foreach (Enemy enemy in _enemies) {
+            if (enemy == null) {
+                continue;
+            }
             if (closedEnemy) {
                 if (Vector3.Distance(gameObject.transform.position, enemy.transform.position) < 
                     Vector3.Distance(gameObject.transform.position, closedEnemy.transform.position)) {

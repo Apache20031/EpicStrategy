@@ -103,7 +103,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -135,8 +135,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
-  _towerType: 0
-  _towerLevel: 0
+  _towerName: 
   _towerObject: {fileID: 0}
   _price: 10
   _sellPrice: 10
@@ -144,3 +143,5 @@ MonoBehaviour:
   _defaultSprite: {fileID: 0}
   _requestSprite: {fileID: 0}
   _lockSprite: {fileID: 0}
+  _image: {fileID: 4530065943098489267}
+  _button: {fileID: 3774175080946856670}

@@ -6,9 +6,11 @@ using UnityEngine;
 
 public abstract class Tower : MonoBehaviour
 {
-    [SerializeField] protected TowerMenu _menu;
+    [SerializeField] protected GameObject _menu;
     [SerializeField] protected float _reload = 1;
     [SerializeField] protected List<EffectData> _effects;
+
+    public GameObject Menu => _menu;
 
     protected List<Enemy> _enemies = new List<Enemy>();
     protected bool _pause = false;

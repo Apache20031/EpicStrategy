@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine.UI;
 using Events;
 using Level;
+using Money;
 
 public enum TowerMenuButtunState
 {
@@ -32,6 +33,8 @@ public class TowerMenuButton : MonoBehaviour
     [SerializeField] private Sprite _defaultSprite;
     [SerializeField] private Sprite _requestSprite;
     [SerializeField] private Sprite _lockSprite;
+    [SerializeField] private Image _image;
+    [SerializeField] private Button _button;
 
     public string TowerName => _towerName;
     public TowerMenuButtonType Type => _type;
@@ -41,8 +44,6 @@ public class TowerMenuButton : MonoBehaviour
     public float ConstructionTime => _constructionTime;
     public TowerMenuButtunState State => _state;
 
-    private Image _image;
-    private Button _button;
     private TowerMenuButtunState _state = TowerMenuButtunState.Default;
 
     public void Subscribe(System.Action<TowerMenuButton> action) {
@@ -57,25 +58,17 @@ public class TowerMenuButton : MonoBehaviour
         switch (state) {
             case TowerMenuButtunState.Default:
                 _image.sprite = _defaultSprite;
-                _button.interactable = true;
                 break;
             case TowerMenuButtunState.Request:
                 _image.sprite = _requestSprite;
-                _button.interactable = true;
                 break;
             case TowerMenuButtunState.Lock:
                 _image.sprite = _lockSprite;
-                _button.interactable = false;
                 break;
         }
     }
 
     private void Awake() {
-        _image = GetComponent<Image>();
-        _button = GetComponent<Button>();
-    }
-
-    private void Start() {
         Observer.Subscribe<MoneyChangeEvent>(UpdateCostAvailable);
         _button.onClick.AddListener(OnMouseButtonClickHandler);
         if (!LevelManager.LevelData.AvailableTowers.GetTowerAvailable(_towerName)) {
@@ -83,12 +76,19 @@ public class TowerMenuButton : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        UpdateCostAvailable(this, new MoneyChangeEvent { });
+    }
+
     private void OnDestroy() {
         Observer.Unsubscribe<MoneyChangeEvent>(UpdateCostAvailable);
     }
 
     private void UpdateCostAvailable(object sender, MoneyChangeEvent moneyData) {
-        _button.interactable = moneyData.money > _price;
+        if (_type != TowerMenuButtonType.Build || _state == TowerMenuButtunState.Lock) {
+            return;
+        }
+        _button.interactable = MoneyManager.Money >= _price;
     }
 
     private void OnMouseButtonClickHandler() {
@@ -117,6 +117,8 @@ public class TowerMenuButton : MonoBehaviour
         SerializedProperty defaultSprite;
         SerializedProperty requestSprite;
         SerializedProperty lockSprite;
+        SerializedProperty image;
+        SerializedProperty button;
 
         public override void OnInspectorGUI() {
             TowerMenuButton towerMenuButton = (TowerMenuButton)target;
@@ -125,16 +127,22 @@ public class TowerMenuButton : MonoBehaviour
             serializedObject.Update();
 
             EditorGUILayout.PropertyField(type);
-            if (towerMenuButton._type == TowerMenuButtonType.Build) {
-                EditorGUILayout.PropertyField(towerName);
-                EditorGUILayout.PropertyField(towerObject);
-                EditorGUILayout.PropertyField(price);
-                EditorGUILayout.PropertyField(sellPrice);
-                EditorGUILayout.PropertyField(constructionTime);
+            switch (towerMenuButton._type) {
+                case TowerMenuButtonType.Build:
+                    EditorGUILayout.PropertyField(towerName);
+                    EditorGUILayout.PropertyField(towerObject);
+                    EditorGUILayout.PropertyField(price);
+                    EditorGUILayout.PropertyField(constructionTime);
+                    break;
+                case TowerMenuButtonType.Sell:
+                    EditorGUILayout.PropertyField(sellPrice);
+                    break;
             }
             EditorGUILayout.PropertyField(defaultSprite);
             EditorGUILayout.PropertyField(requestSprite);
             EditorGUILayout.PropertyField(lockSprite);
+            EditorGUILayout.PropertyField(image);
+            EditorGUILayout.PropertyField(button);
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -149,6 +157,8 @@ public class TowerMenuButton : MonoBehaviour
             defaultSprite = serializedObject.FindProperty("_defaultSprite");
             requestSprite = serializedObject.FindProperty("_requestSprite");
             lockSprite = serializedObject.FindProperty("_lockSprite");
+            image = serializedObject.FindProperty("_image");
+            button = serializedObject.FindProperty("_button");
         }
     }
     #endif
